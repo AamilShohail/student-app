@@ -1,0 +1,16 @@
+.container {
+    background: rgba(26, 27, 31, 0.12);
+    padding: 13px;
+    border-radius: 15px;
+    width: max-content;
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    mat-form-field {
+        width: 40% !important;
+    }
+}

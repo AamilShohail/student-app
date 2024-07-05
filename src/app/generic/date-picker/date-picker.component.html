@@ -1,0 +1,21 @@
+<mat-form-field
+  appearance="outline"
+  style="width: 100%"
+  [formGroup]="dateFieldElement.formGroup"
+>
+  <mat-label>{{ dateFieldElement.label }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [formControlName]="dateFieldElement.formControlName"
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker" />
+  <mat-datepicker #picker />
+  @if (isRequired()) {
+  <mat-error
+    >{{ dateFieldElement.label }} is <strong>required</strong></mat-error
+  >
+  } @else if (isInvalidDob()) {
+  <mat-error>Selected date of birth is <strong>invalid</strong></mat-error>
+  }
+</mat-form-field>

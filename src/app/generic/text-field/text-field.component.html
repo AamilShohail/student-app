@@ -1,0 +1,39 @@
+<mat-form-field
+  [formGroup]="textFieldElement.formGroup"
+  appearance="outline"
+  style="width: 100%"
+>
+  <mat-label>{{ textFieldElement.label }}</mat-label>
+  @if (textFieldElement.enableTextarea) {
+  <textarea
+    matInput
+    [formControlName]="textFieldElement.formControlName"
+    cdkTextareaAutosize
+    cdkAutosizeMinRows="1"
+    [placeholder]="textFieldElement.placeholder ?? ''"
+    [required]="isRequired()"
+    cdkAutosizeMaxRows="5"
+  ></textarea>
+  } @else {
+  <input
+    [formControlName]="textFieldElement.formControlName"
+    matInput
+    [placeholder]="textFieldElement.placeholder ?? ''"
+    [required]="isRequired()"
+    [type]="textFieldElement.type ?? 'text'"
+  />
+  } @if (isRequired()) {
+  <mat-error
+    >{{ textFieldElement.label }} is <strong>required</strong></mat-error
+  >
+  } @else if (isMismatch()) {
+  <mat-error
+    >{{ textFieldElement.label }} <strong>did not match</strong></mat-error
+  >
+  } @else if (minLengthError()) {
+  <mat-error
+    >At least {{ minLength }} characters are
+    <strong>required</strong></mat-error
+  >
+  }
+</mat-form-field>

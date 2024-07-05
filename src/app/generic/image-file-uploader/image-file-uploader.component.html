@@ -1,0 +1,43 @@
+<div class="upload-area__button" [ngClass]="{ hide: !!imgUrl }">
+  <input
+    type="file"
+    #fileUpload
+    (change)="onFileSelected($event)"
+    [accept]="acceptedImageFileTypes"
+  />
+  <div class="upload-area__button--selection">
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      (click)="fileUpload.click()"
+    >
+      Select Image File
+    </button>
+  </div>
+</div>
+@if (imgUrl) {
+<ng-container>
+  <div class="upload-container">
+    <img class="upload-container__image" imgPreview [imageSrc]="imgUrl" />
+    <div class="upload-container__image-file-actions">
+      <button
+        mat-icon-button
+        type="button"
+        class="upload-container__image-file-actions--edit"
+        (click)="editImageFile()"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        type="button"
+        class="upload-container__image-file-actions--delete"
+        (click)="removeImageFile()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-container>
+}
